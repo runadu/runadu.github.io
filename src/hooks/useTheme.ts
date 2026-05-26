@@ -19,7 +19,7 @@ export function useTheme() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setTheme((prev: ThemeMode) => (prev === "dark" ? "light" : "dark"));
   };
 
   return { theme, setTheme, toggleTheme };

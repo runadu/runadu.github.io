@@ -6,7 +6,6 @@ import type {
   SectionData,
 } from "../types";
 
-
 export const navItems: NavItem[] = [
   {
     href: "#about",
@@ -16,6 +15,11 @@ export const navItems: NavItem[] = [
     href: "#web-dev",
     label: "Web",
     subLabel: "Frontend builds & product work",
+  },
+  {
+    href: "#projects",
+    label: "Projects",
+    subLabel: "Frontend experiments & technical demos",
   },
   {
     href: "#ux-arch",
@@ -57,9 +61,7 @@ export const heroContent: HeroContent = {
     "RESTful API Integration",
     "Accessibility (a11y)",
   ],
-  backendSkills: [
-    "C# (ASP.NET MVC)",
-  ],
+  backendSkills: ["C# (ASP.NET MVC)"],
 };
 
 export const footerContent: FooterContent = {
@@ -92,7 +94,7 @@ export const sections: SectionData[] = [
             "無障礙（WCAG 2.1 AA）",
             "語意化 HTML",
             "鍵盤操作支援",
-            "UI/UX 改善"
+            "UI/UX 改善",
           ],
           en: [
             "ASP.NET MVC (SSR)",
@@ -100,7 +102,7 @@ export const sections: SectionData[] = [
             "Accessibility (WCAG 2.1 AA)",
             "Semantic HTML",
             "Keyboard Accessibility",
-            "UI/UX Improvements"
+            "UI/UX Improvements",
           ],
         },
         images: ["/imgs/dev-3.png"],
@@ -130,7 +132,7 @@ export const sections: SectionData[] = [
             "RWD",
             "購物車 / 結帳流程",
             "跨頁狀態管理",
-            "多語系（i18n）"
+            "多語系（i18n）",
           ],
           en: [
             "ASP.NET MVC (SSR)",
@@ -139,8 +141,8 @@ export const sections: SectionData[] = [
             "Responsive Design",
             "Cart & Checkout Flow",
             "Cross-page State Management",
-            "Internationalization (i18n)"
-          ]
+            "Internationalization (i18n)",
+          ],
         },
         images: ["/imgs/dev-2.png"],
         links: [
@@ -154,7 +156,7 @@ export const sections: SectionData[] = [
         id: "dev-3",
         title: {
           zh: "承鋒鑄造",
-          en: "Cheng Feng Casting Factory"
+          en: "Cheng Feng Casting Factory",
         },
         year: "2025",
         description: {
@@ -177,15 +179,100 @@ export const sections: SectionData[] = [
             "Internationalization (i18n)",
             "CMS Integration",
             "Responsive Design",
-          ]
+          ],
         },
         images: ["/imgs/dev-1.png"],
         links: [
           {
             label: { zh: "查看網站", en: "View Site" },
-            url: "https://www.chengfeng.com.tw/"
-          }
-        ]
+            url: "https://www.chengfeng.com.tw/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "projects",
+    title: {
+      zh: "Projects",
+      en: "Projects",
+    },
+    items: [
+      {
+        id: "project-1",
+        title: {
+          zh: "Pull Request 工作區",
+          en: "Pull Request Dashboard",
+        },
+        year: "2026",
+        description: {
+          zh: "獨立規劃與開發的 GitHub Review Workspace，整合跨 repository 的 PR triage、review context 與回覆流程於單一介面，優化工程協作效率，降低 reviewer 在多個 GitHub 頁面之間切換的操作成本。",
+          en: "Designed and developed a GitHub review workspace that centralizes cross-repository PR triage, review context, and reply workflows in a single interface, improving engineering collaboration efficiency and reducing context switching across GitHub pages.",
+        },
+        tags: {
+          zh: [
+            "Next.js 16 (App Router)",
+            "React 19",
+            "TypeScript",
+            "Tailwind",
+            "NextAuth",
+            "Redux Toolkit",
+            "Vitest",
+          ],
+          en: [
+            "Next.js 16 (App Router)",
+            "React 19",
+            "TypeScript",
+            "Tailwind",
+            "NextAuth",
+            "Redux Toolkit",
+            "Vitest",
+          ],
+        },
+        images: ["/imgs/side-project-1.png"],
+        links: [
+          {
+            label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
+            url: "https://github.com/runadu/pr-dashboard",
+          },
+        ],
+      },
+      {
+        id: "project-2",
+        title: {
+          zh: "全端後台管理系統",
+          en: "Full-Stack Admin Dashboard",
+        },
+        year: "2026",
+        description: {
+          zh: "以 FastAPI、Vue 3 與 TypeScript 開發全端後台系統，實作會員註冊登入、JWT 驗證、路由權限控管與受保護頁面，並串接 Massive（Polygon）股票 API 建立 Dashboard 與資料列表介面，同時以 Docker 建置本機開發環境與資料庫服務。",
+          en: "Built a full-stack admin dashboard with FastAPI, Vue 3, and TypeScript, implementing user registration/login, JWT authentication, route-based access control, and protected pages. Integrated Massive (Polygon) stock APIs to power dashboard and data listing views, and used Docker to streamline local development and database setup.",
+        },
+        tags: {
+          zh: [
+            "FastAPI",
+            "Vue 3",
+            "TypeScript",
+            "SQL Server",
+            "Docker",
+            "Massive (Polygon)",
+          ],
+          en: [
+            "FastAPI",
+            "Vue 3",
+            "TypeScript",
+            "SQL Server",
+            "Docker",
+            "Massive (Polygon)",
+          ],
+        },
+        images: ["/imgs/side-project-2.png"],
+        links: [
+          {
+            label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
+            url: "https://github.com/runadu/full-stack-admin",
+          },
+        ],
       },
     ],
   },
@@ -208,17 +295,12 @@ export const sections: SectionData[] = [
           en: "Established a front-end component system by defining reusable components and layout rules, improving UI consistency and reducing duplication in development.",
         },
         tags: {
-          zh: [
-            "元件系統",
-            "UI 架構",
-            "Design System",
-            "Layout 規則"
-          ],
+          zh: ["元件系統", "UI 架構", "Design System", "Layout 規則"],
           en: [
             "Component System",
             "UI Architecture",
             "Design System",
-            "Layout Rules"
+            "Layout Rules",
           ],
         },
         images: ["/imgs/ui-1-1.png", "/imgs/ui-1-2.png", "/imgs/ui-1-3.png"],
@@ -227,7 +309,7 @@ export const sections: SectionData[] = [
         id: "arch-2",
         title: {
           zh: "資訊架構規劃",
-          en: "Information Architecture Design"
+          en: "Information Architecture Design",
         },
         year: "2025",
         description: {
@@ -235,20 +317,14 @@ export const sections: SectionData[] = [
           en: "Defined the website’s information architecture and content hierarchy, structuring pages and content composition. Built a scalable layout foundation to support long-term maintenance and extensibility.",
         },
         tags: {
-          zh: [
-            "資訊架構（IA）",
-            "內容結構",
-            "頁面層級",
-            "元件系統",
-            "RWD"
-          ],
+          zh: ["資訊架構（IA）", "內容結構", "頁面層級", "元件系統", "RWD"],
           en: [
             "Information Architecture (IA)",
             "Content Structure",
             "Page Hierarchy",
             "Component System",
-            "Responsive Layout"
-          ]
+            "Responsive Layout",
+          ],
         },
         images: [
           "/imgs/ui-2-pc-1.png",
@@ -256,9 +332,9 @@ export const sections: SectionData[] = [
           "/imgs/ui-2-pc-3.png",
           "/imgs/ui-2-mobile-1.png",
           "/imgs/ui-2-mobile-2.png",
-          "/imgs/ui-2-mobile-3.png"
-        ]
-      }
+          "/imgs/ui-2-mobile-3.png",
+        ],
+      },
     ],
-  }
+  },
 ];
