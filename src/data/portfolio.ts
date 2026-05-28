@@ -245,8 +245,8 @@ export const sections: SectionData[] = [
         },
         year: "2026",
         description: {
-          zh: "以 FastAPI、Vue 3 與 TypeScript 開發全端後台系統，實作會員註冊登入、JWT 驗證、路由權限控管與受保護頁面，並串接 Massive（Polygon）股票 API 建立 Dashboard 與資料列表介面，同時以 Docker 建置本機開發環境與資料庫服務。",
-          en: "Built a full-stack admin dashboard with FastAPI, Vue 3, and TypeScript, implementing user registration/login, JWT authentication, route-based access control, and protected pages. Integrated Massive (Polygon) stock APIs to power dashboard and data listing views, and used Docker to streamline local development and database setup.",
+          zh: "開發全端後台系統，實作會員註冊登入、JWT 驗證、路由權限控管與受保護頁面，串接 Massive（Polygon）股票 API 建立資料列表介面，並以 Docker 建置本機開發環境與資料庫服務。",
+          en: "Built a full-stack admin dashboard, implementing user registration/login, JWT authentication, route-based access control, protected pages, and data listing views powered by Massive (Polygon) stock APIs. Used Docker to set up the local development environment and database services.",
         },
         tags: {
           zh: [
