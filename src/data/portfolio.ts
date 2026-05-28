@@ -235,6 +235,10 @@ export const sections: SectionData[] = [
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
             url: "https://github.com/runadu/pr-dashboard",
           },
+          {
+            label: { zh: "查看 Demo 影片", en: "View Demo Video" },
+            url: "https://youtu.be/oewvGuVrr2M",
+          },
         ],
       },
       {
