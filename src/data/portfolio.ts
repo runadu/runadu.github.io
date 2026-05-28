@@ -206,8 +206,8 @@ export const sections: SectionData[] = [
         },
         year: "2026",
         description: {
-          zh: "獨立規劃與開發的 GitHub Review Workspace，整合跨 repository 的 PR triage、review context 與回覆流程於單一介面，優化工程協作效率，降低 reviewer 在多個 GitHub 頁面之間切換的操作成本。",
-          en: "Designed and developed a GitHub review workspace that centralizes cross-repository PR triage, review context, and reply workflows in a single interface, improving engineering collaboration efficiency and reducing context switching across GitHub pages.",
+          zh: "規劃並開發 GitHub Review Workspace，將跨 repo 的 PR triage 與 review context 整合至單一介面，提升協作效率，並降低 reviewer 在多個 GitHub 頁面之間切換的操作成本。",
+          en: "Planned and developed a GitHub Review Workspace that consolidates cross-repository PR triage and review context into a single interface, improving collaboration efficiency and reducing the operational overhead for reviewers switching between multiple GitHub pages.",
         },
         tags: {
           zh: [
@@ -271,6 +271,10 @@ export const sections: SectionData[] = [
           {
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
             url: "https://github.com/runadu/full-stack-admin",
+          },
+          {
+            label: { zh: "查看 Demo 影片", en: "View Demo Video" },
+            url: "https://youtu.be/rHkOYng-cGI",
           },
         ],
       },
