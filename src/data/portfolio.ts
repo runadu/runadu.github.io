@@ -55,6 +55,7 @@ export const heroContent: HeroContent = {
   skills: [
     "JavaScript (ES6+)",
     "TypeScript",
+    "React.js",
     "Vue 3",
     "HTML5 & CSS3",
     "SCSS",
