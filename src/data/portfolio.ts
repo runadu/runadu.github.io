@@ -343,6 +343,23 @@ export const sections: SectionData[] = [
           "/imgs/ui-2-mobile-3.png",
         ],
       },
+      {
+        id: "arch-3",
+        title: {
+          zh: "一頁式網站設計",
+          en: "One-Page Website Design",
+        },
+        year: "2025",
+        description: {
+          zh: "根據使用情境規劃資訊架構、頁面流程與視覺介面。",
+          en: "Designed the information architecture, page flow, and visual interface.",
+        },
+        tags: {
+          zh: ["Web UI/UX", "Information Architecture"],
+          en: ["Web UI/UX", "Information Architecture"],
+        },
+        images: ["/imgs/ui-3-1.png"],
+      },
     ],
   },
 ];
