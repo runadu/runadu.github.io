@@ -31,6 +31,10 @@ export default function SiteMotionBackground({
 }: SiteMotionBackgroundProps) {
   const shouldReduceMotion = useReducedMotion();
   const isDark = theme === "dark";
+  const crosshairLineClass = isDark ? "bg-[#E8BA97]/88" : "bg-[#AF5F3C]/75";
+  const crosshairPointClass = isDark
+    ? "border-[#F3C9AB] bg-[#E8BA97]/18 shadow-[0_0_32px_rgba(232,186,151,0.55)]"
+    : "border-[#AF5F3C] bg-[#AF5F3C]/12 shadow-[0_0_28px_rgba(175,95,60,0.45)]";
   const [canTrackPointer, setCanTrackPointer] = useState(false);
 
   const rawX = useMotionValue(0.5);
@@ -254,12 +258,12 @@ export default function SiteMotionBackground({
 
         <motion.div
           style={{ top: pointTop }}
-          className="absolute left-0 right-0 h-px -translate-y-1/2 bg-[#AF5F3C]/75"
+          className={`absolute left-0 right-0 h-px -translate-y-1/2 ${crosshairLineClass}`}
         />
 
         <motion.div
           style={{ left: pointLeft }}
-          className="absolute top-0 bottom-0 w-px -translate-x-1/2 bg-[#AF5F3C]/75"
+          className={`absolute top-0 bottom-0 w-px -translate-x-1/2 ${crosshairLineClass}`}
         />
 
         <motion.div
@@ -267,7 +271,7 @@ export default function SiteMotionBackground({
             left: pointLeft,
             top: pointTop,
           }}
-          className="absolute h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#AF5F3C] bg-[#AF5F3C]/12 shadow-[0_0_28px_rgba(175,95,60,0.45)]"
+          className={`absolute h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border ${crosshairPointClass}`}
         />
       </motion.div>
 

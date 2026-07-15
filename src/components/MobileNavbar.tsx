@@ -13,7 +13,7 @@ type MobileNavbarProps = {
 const chipBase =
   "inline-flex h-9 items-center justify-center rounded-full border px-3 text-xs font-medium transition-colors";
 const chipIdle =
-  "border-zinc-200 bg-white text-zinc-700 hover:border-[#AF5F3C]/30 hover:bg-[#AF5F3C]/8 hover:text-zinc-900 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/75 dark:hover:border-white/20 dark:hover:bg-white/[0.06] dark:hover:text-white";
+  "border-zinc-200 bg-white text-zinc-700 hover:border-[#AF5F3C]/30 hover:bg-[#AF5F3C]/8 hover:text-zinc-900 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/75 dark:hover:border-[#E8BA97]/40 dark:hover:bg-[#E8BA97]/10 dark:hover:text-white";
 const chipActive =
   "border-[#AF5F3C]/90 bg-[#AF5F3C]/90 text-white dark:border-white dark:bg-white dark:text-black";
 
@@ -26,7 +26,7 @@ export default function MobileNavbar({
 }: MobileNavbarProps) {
   return (
     <>
-      <header className="border-b border-zinc-200 bg-white dark:border-white/10 dark:bg-[#1a1a1a] md:hidden">
+      <header className="relative z-20 border-b border-zinc-200 bg-white dark:border-white/10 dark:bg-[#1a1a1a] md:hidden">
         <div className="p-6">
           <div className="space-y-5">
             <div className="space-y-2">
@@ -55,7 +55,7 @@ export default function MobileNavbar({
                 <a
                   key={item.href}
                   href={item.href}
-                  className="group rounded-2xl border border-zinc-200/80 bg-white/70 px-4 py-3 transition hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/15 dark:hover:bg-white/[0.05]"
+                  className="group rounded-2xl border border-zinc-200/80 bg-white/70 px-4 py-3 transition hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#E8BA97]/35 dark:hover:bg-[#E8BA97]/[0.07]"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
@@ -86,7 +86,7 @@ export default function MobileNavbar({
         </div>
       </header>
 
-      <div className="sticky top-0 z-30 border-b border-zinc-200 bg-white/92 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#1a1a1a]/92 md:hidden">
+      <div className="sticky top-0 z-40 border-b border-zinc-200 bg-white/92 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#1a1a1a]/92 md:hidden">
         <div className="flex flex-wrap items-center justify-end gap-2">
           <div className="flex items-center gap-2 rounded-full border border-zinc-200 p-1 dark:border-white/10">
             <button

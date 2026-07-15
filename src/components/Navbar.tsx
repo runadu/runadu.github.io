@@ -43,7 +43,7 @@ export default function Navbar({ locale, description }: NavbarProps) {
               <a
                 key={item.href}
                 href={item.href}
-                className="group rounded-2xl border border-zinc-200/80 bg-white/70 px-4 py-3 transition hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/15 dark:hover:bg-white/[0.05]"
+                className="group rounded-2xl border border-zinc-200/80 bg-white/70 px-4 py-3 transition hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#E8BA97]/35 dark:hover:bg-[#E8BA97]/[0.07]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">

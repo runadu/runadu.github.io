@@ -24,7 +24,7 @@ export default function WorkCard({
   return (
     <article className="rounded-2xl border border-zinc-200/80 bg-white/70 p-6 transition 
     hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 md:p-8 
-    dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/15 dark:hover:bg-white/[0.05]">
+    dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#E8BA97]/35 dark:hover:bg-[#E8BA97]/[0.07]">
       <div className="grid gap-8 lg:grid-cols-[480px_1fr] xl:grid-cols-[580px_1fr] 2xl:grid-cols-[680px_1fr]">
         <div className="space-y-5">
           <div className="space-y-3">
@@ -72,7 +72,7 @@ export default function WorkCard({
                     dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100
                     px-4 py-2 text-sm font-medium transition
                     hover:border-[#AF5F3C]/90 hover:bg-[#AF5F3C]/90 hover:text-white
-                    dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
+                    dark:hover:border-[#E8BA97] dark:hover:bg-[#E8BA97] dark:hover:text-[#1b1715]"
                 >
                   <span>{getLocalizedText(locale, link.label)}</span>
                   <ExternalLink size={16} />

@@ -24,7 +24,7 @@ type LightboxState = {
 const switchButtonBase =
   "inline-flex h-8 items-center justify-center rounded-full border px-3 text-xs transition-colors";
 const switchButtonIdle =
-  "border-zinc-200 text-zinc-700 hover:bg-[#AF5F3C]/10 hover:text-zinc-900 dark:border-white/10 dark:text-white/80 dark:hover:bg-white/5 dark:hover:text-white";
+  "border-zinc-200 text-zinc-700 hover:border-[#AF5F3C]/30 hover:bg-[#AF5F3C]/10 hover:text-zinc-900 dark:border-white/10 dark:text-white/80 dark:hover:border-[#E8BA97]/40 dark:hover:bg-[#E8BA97]/10 dark:hover:text-white";
 const switchButtonActive =
   "border-[#AF5F3C]/90 bg-[#AF5F3C]/90 text-white dark:border-white dark:bg-white dark:text-black";
 
@@ -67,7 +67,9 @@ function DesktopControls({
         type="button"
         onClick={onToggleTheme}
         className={`${switchButtonBase} ${switchButtonIdle} gap-1 px-0`}
-        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        aria-label={
+          theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+        }
       >
         {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
         <span className="text-sm">
@@ -76,8 +78,8 @@ function DesktopControls({
               ? "淺色模式"
               : "Light Mode"
             : locale === "zh"
-            ? "深色模式"
-            : "Dark Mode"}
+              ? "深色模式"
+              : "Dark Mode"}
         </span>
       </button>
     </div>
@@ -92,7 +94,7 @@ export default function App() {
   const handleOpenLightbox = (
     images: string[],
     startIndex: number,
-    title: string
+    title: string,
   ) => {
     setLightbox({ images, startIndex, title });
   };
@@ -216,13 +218,13 @@ export default function App() {
           ))}
         </div>
 
-        <footer id="contact" className="py-10">
+        {/* <footer id="contact" className="py-10">
           <div className="flex flex-col gap-4 border-t border-zinc-200 pt-6 text-sm dark:border-white/10 md:flex-row md:items-center md:justify-between">
             <div className="text-center text-zinc-400 dark:text-white/30">
               {footerContent.copyright}
             </div>
           </div>
-        </footer>
+        </footer> */}
       </main>
 
       {lightbox && (
