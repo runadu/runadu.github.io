@@ -26,7 +26,7 @@ export default function MobileNavbar({
 }: MobileNavbarProps) {
   return (
     <>
-      <header className="relative z-20 border-b border-zinc-200 bg-white dark:border-white/10 dark:bg-[#1a1a1a] md:hidden">
+      <header className="relative z-20 border-b border-zinc-200 bg-white/50 dark:border-white/10 dark:bg-[#1a1a1a] md:hidden">
         <div className="p-6">
           <div className="space-y-5">
             <div className="space-y-2">
@@ -86,7 +86,7 @@ export default function MobileNavbar({
         </div>
       </header>
 
-      <div className="sticky top-0 z-40 border-b border-zinc-200 bg-white/92 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#1a1a1a]/92 md:hidden">
+      <div className="sticky top-0 z-40 border-b border-zinc-200 bg-white/50 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#1a1a1a]/92 md:hidden">
         <div className="flex flex-wrap items-center justify-end gap-2">
           <div className="flex items-center gap-2 rounded-full border border-zinc-200 p-1 dark:border-white/10">
             <button
@@ -131,8 +131,8 @@ export default function MobileNavbar({
                   ? "淺色模式"
                   : "Light Mode"
                 : locale === "zh"
-                ? "深色模式"
-                : "Dark Mode"}
+                  ? "深色模式"
+                  : "Dark Mode"}
             </span>
           </button>
         </div>

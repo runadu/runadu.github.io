@@ -17,8 +17,8 @@ export const navItems: NavItem[] = [
     subLabel: "Frontend builds & product work",
   },
   {
-    href: "#projects",
-    label: "Projects",
+    href: "#side-projects",
+    label: "Side Projects",
     subLabel: "Frontend experiments & technical demos",
   },
   {
@@ -44,10 +44,6 @@ export const heroContent: HeroContent = {
     zh: "專注於網站開發，將設計轉化為可重用的元件與頁面，並在開發過程中持續優化效能與使用體驗。",
     en: "Focused on web development, translating designs into reusable components and pages while continuously improving performance and user experience.",
   },
-  cta: {
-    zh: "查看專案",
-    en: "View Projects",
-  },
   sectionLabel: {
     zh: "About",
     en: "About",
@@ -55,14 +51,16 @@ export const heroContent: HeroContent = {
   skills: [
     "JavaScript (ES6+)",
     "TypeScript",
+    "Next.js",
     "React.js",
+    "Redux Toolkit",
     "Vue 3",
     "HTML5 & CSS3",
     "SCSS",
     "RESTful API Integration",
     "Accessibility (a11y)",
   ],
-  backendSkills: ["C# (ASP.NET MVC)"],
+  backendSkills: ["C# (ASP.NET Core MVC)", "SQL"],
 };
 
 export const footerContent: FooterContent = {
@@ -90,7 +88,7 @@ export const sections: SectionData[] = [
         },
         tags: {
           zh: [
-            "ASP.NET MVC（SSR）",
+            "ASP.NET Core MVC（SSR）",
             "前端重構",
             "無障礙（WCAG 2.1 AA）",
             "語意化 HTML",
@@ -98,7 +96,7 @@ export const sections: SectionData[] = [
             "UI/UX 改善",
           ],
           en: [
-            "ASP.NET MVC (SSR)",
+            "ASP.NET Core MVC (SSR)",
             "Front-end Refactoring",
             "Accessibility (WCAG 2.1 AA)",
             "Semantic HTML",
@@ -122,12 +120,12 @@ export const sections: SectionData[] = [
         },
         year: "2025",
         description: {
-          zh: "在 ASP.NET MVC（SSR）架構下進行前端開發並串接後台 CMS。設計並實作購物車、結帳與會員流程，處理跨頁狀態與流程整合，確保不同操作情境下的一致性。同時實作多語系（i18n），對應不同語系內容與介面。",
-          en: "Built the front end within an ASP.NET MVC (SSR) architecture and integrated it with a CMS. Designed and implemented cart, checkout, and membership workflows, managing cross-page state and ensuring consistent behavior across user scenarios. Implemented internationalization (i18n) to support localized content and interfaces.",
+          zh: "在 ASP.NET Core MVC（SSR）架構下進行前端開發並串接後台 CMS。設計並實作購物車、結帳與會員流程，處理跨頁狀態與流程整合，確保不同操作情境下的一致性。同時實作多語系（i18n），對應不同語系內容與介面。",
+          en: "Built the front end within an ASP.NET Core MVC (SSR) architecture and integrated it with a CMS. Designed and implemented cart, checkout, and membership workflows, managing cross-page state and ensuring consistent behavior across user scenarios. Implemented internationalization (i18n) to support localized content and interfaces.",
         },
         tags: {
           zh: [
-            "ASP.NET MVC（SSR）",
+            "ASP.NET Core MVC（SSR）",
             "前端工程",
             "CMS 串接",
             "RWD",
@@ -136,7 +134,7 @@ export const sections: SectionData[] = [
             "多語系（i18n）",
           ],
           en: [
-            "ASP.NET MVC (SSR)",
+            "ASP.NET Core MVC (SSR)",
             "Front-end Engineering",
             "CMS Integration",
             "Responsive Design",
@@ -161,12 +159,12 @@ export const sections: SectionData[] = [
         },
         year: "2025",
         description: {
-          zh: "依據架構規劃進行前端實作，於 ASP.NET MVC（SSR）架構下開發前台並串接後台 CMS，建構型錄網站。依據內容層級設計可重用元件，並實作多語系（i18n），確保版型與資料結構一致，提升開發效率與維護性。",
-          en: "Implemented the front end within an ASP.NET MVC (SSR) architecture based on predefined structural guidelines, integrating with a CMS to deliver a catalog-style website. Developed reusable components aligned with content hierarchy and implemented internationalization (i18n), ensuring consistency between layout and data structure while improving maintainability.",
+          zh: "依據架構規劃進行前端實作，於 ASP.NET Core MVC（SSR）架構下開發前台並串接後台 CMS，建構型錄網站。依據內容層級設計可重用元件，並實作多語系（i18n），確保版型與資料結構一致，提升開發效率與維護性。",
+          en: "Implemented the front end within an ASP.NET Core MVC (SSR) architecture based on predefined structural guidelines, integrating with a CMS to deliver a catalog-style website. Developed reusable components aligned with content hierarchy and implemented internationalization (i18n), ensuring consistency between layout and data structure while improving maintainability.",
         },
         tags: {
           zh: [
-            "ASP.NET MVC（SSR）",
+            "ASP.NET Core MVC（SSR）",
             "前端開發",
             "元件化設計",
             "多語系（i18n）",
@@ -174,7 +172,7 @@ export const sections: SectionData[] = [
             "RWD",
           ],
           en: [
-            "ASP.NET MVC (SSR)",
+            "ASP.NET Core MVC (SSR)",
             "Front-end Engineering",
             "Component-based Architecture",
             "Internationalization (i18n)",
@@ -193,10 +191,10 @@ export const sections: SectionData[] = [
     ],
   },
   {
-    id: "projects",
+    id: "side-projects",
     title: {
-      zh: "Projects",
-      en: "Projects",
+      zh: "Side Projects",
+      en: "Side Projects",
     },
     items: [
       {
@@ -236,10 +234,6 @@ export const sections: SectionData[] = [
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
             url: "https://github.com/runadu/pr-dashboard",
           },
-          {
-            label: { zh: "查看 Demo 影片", en: "View Demo Video" },
-            url: "https://youtu.be/oewvGuVrr2M",
-          },
         ],
       },
       {
@@ -277,10 +271,10 @@ export const sections: SectionData[] = [
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
             url: "https://github.com/runadu/full-stack-admin",
           },
-          {
-            label: { zh: "查看 Demo 影片", en: "View Demo Video" },
-            url: "https://youtu.be/rHkOYng-cGI",
-          },
+          // {
+          //   label: { zh: "查看 Demo 影片", en: "View Demo Video" },
+          //   url: "https://youtu.be/rHkOYng-cGI",
+          // },
         ],
       },
     ],

@@ -47,7 +47,6 @@ export type SectionData = {
 export type HeroContent = {
   title: LocalizedText;
   description: LocalizedText;
-  cta: LocalizedText;
   sectionLabel: LocalizedText;
   skills: string[];
   backendSkills: string[];
@@ -57,14 +56,17 @@ export type FooterContent = {
   copyright: string;
 };
 
-export function getLocalizedText(locale: Locale, value?: LocalizedText): string {
+export function getLocalizedText(
+  locale: Locale,
+  value?: LocalizedText,
+): string {
   if (!value) return "";
   return value[locale];
 }
 
 export function getLocalizedArray(
   locale: Locale,
-  value?: LocalizedStringArray
+  value?: LocalizedStringArray,
 ): string[] {
   if (!value) return [];
   return value[locale];

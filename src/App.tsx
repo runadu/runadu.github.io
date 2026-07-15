@@ -186,22 +186,6 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="flex flex-wrap gap-3 pt-2">
-                <a
-                  href="#projects"
-                  className="
-                    inline-flex items-center gap-2 rounded-full border 
-                    border-zinc-200 bg-white text-zinc-800
-                    dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100
-                    px-4 py-2 text-sm font-medium transition
-                    hover:border-[#AF5F3C]/90 hover:bg-[#AF5F3C]/90 hover:text-white
-                    dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
-                >
-                  {getLocalizedText(locale, heroContent.cta)}
-                  <ExternalLink size={16} />
-                </a>
-              </div> */}
             </div>
           </motion.div>
         </section>
