@@ -110,7 +110,7 @@ export const sections: SectionData[] = [
         links: [
           {
             label: { zh: "查看網站", en: "View Site" },
-            url: "https://sps.isafe.org.tw/",
+            url: "https://sdd.nat.gov.tw/sps",
           },
         ],
       },
