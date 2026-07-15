@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Mail, Moon, Sun, ExternalLink } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
 import Navbar from "./components/Navbar";
 import MobileNavbar from "./components/MobileNavbar";
 import PortfolioSection from "./components/PortfolioSection";
 import Lightbox from "./components/Lightbox";
+import ScrollIndicator from "./components/ScrollIndicator";
+import SiteMotionBackground from "./components/SiteMotionBackground";
 
 import { footerContent, heroContent, intro, sections } from "./data/portfolio";
 import { useLocale } from "./hooks/useLocale";
@@ -100,10 +102,9 @@ export default function App() {
   };
 
   return (
-    
-    <div className="min-h-screen bg-white text-zinc-900 transition-colors dark:bg-[#1a1a1a]/95 dark:text-white">
-      
-      
+    <div className="relative min-h-screen overflow-hidden bg-[#f8f5f1]/88 text-zinc-900 transition-colors dark:bg-[#171312]/88 dark:text-white">
+      <SiteMotionBackground theme={theme} />
+
       <DesktopControls
         locale={locale}
         theme={theme}
@@ -124,7 +125,9 @@ export default function App() {
         description={getLocalizedText(locale, intro.description)}
       />
 
-      <main className="mx-auto max-w-6xl px-4 py-8 md:ml-80 md:px-8 md:py-12 lg:px-10">
+      <ScrollIndicator theme={theme} />
+
+      <main className="relative z-10 mx-auto max-w-6xl px-4 py-8 md:ml-80 md:px-8 md:py-12 lg:px-10">
         <section id="about" className="scroll-mt-24 py-6 md:py-10">
           <div className="mb-8 md:mb-10">
             <p className="mb-2 text-xs uppercase tracking-[0.24em] text-zinc-400 dark:text-white/30">

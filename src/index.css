@@ -9,11 +9,19 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none;
   }
 
   body {
     font-family: var(--font-sans);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     @apply bg-zinc-950 text-white antialiased;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   a {
