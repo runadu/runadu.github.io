@@ -129,7 +129,7 @@ export default function App() {
 
       <ScrollIndicator theme={theme} />
 
-      <main className="relative z-10 mx-auto max-w-6xl px-4 py-8 md:ml-80 md:px-8 md:py-12 lg:px-10">
+      <main className="relative z-10 mx-auto px-4 py-8 md:ml-80 md:px-8 md:py-12 lg:px-10">
         <section id="about" className="scroll-mt-24 py-6 md:py-10">
           <div className="mb-8 md:mb-10">
             <p className="mb-2 text-xs uppercase tracking-[0.24em] text-zinc-400 dark:text-white/30">
