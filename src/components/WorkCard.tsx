@@ -35,7 +35,7 @@ export default function WorkCard({
             </h5>
 
             {description && (
-              <p className="max-w-[58ch] text-sm leading-7 text-zinc-600 dark:text-white/65">
+              <p className="text-sm leading-7 text-zinc-600 dark:text-white/65">
                 {description}
               </p>
             )}
