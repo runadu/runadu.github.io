@@ -104,7 +104,7 @@ export const sections: SectionData[] = [
             "UI/UX Improvements",
           ],
         },
-        images: ["/imgs/dev-3.png"],
+        images: ["/imgs/dev-3.webp"],
         links: [
           {
             label: { zh: "查看網站", en: "View Site" },
@@ -143,7 +143,7 @@ export const sections: SectionData[] = [
             "Internationalization (i18n)",
           ],
         },
-        images: ["/imgs/dev-2.png"],
+        images: ["/imgs/dev-2.webp"],
         links: [
           {
             label: { zh: "查看網站", en: "View Site" },
@@ -180,7 +180,7 @@ export const sections: SectionData[] = [
             "Responsive Design",
           ],
         },
-        images: ["/imgs/dev-1.png"],
+        images: ["/imgs/dev-1.webp"],
         links: [
           {
             label: { zh: "查看網站", en: "View Site" },
@@ -228,7 +228,7 @@ export const sections: SectionData[] = [
             "Vitest",
           ],
         },
-        images: ["/imgs/side-project-1.png"],
+        images: ["/imgs/side-project-1.webp"],
         links: [
           {
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
@@ -265,7 +265,7 @@ export const sections: SectionData[] = [
             "Massive (Polygon)",
           ],
         },
-        images: ["/imgs/side-project-2.png"],
+        images: ["/imgs/side-project-2.webp"],
         links: [
           {
             label: { zh: "查看 GitHub Repo", en: "View GitHub Repo" },
@@ -306,7 +306,7 @@ export const sections: SectionData[] = [
             "Layout Rules",
           ],
         },
-        images: ["/imgs/ui-1-1.png", "/imgs/ui-1-2.png", "/imgs/ui-1-3.png"],
+        images: ["/imgs/ui-1-1.webp", "/imgs/ui-1-2.webp", "/imgs/ui-1-3.webp"],
       },
       {
         id: "arch-2",
@@ -330,12 +330,12 @@ export const sections: SectionData[] = [
           ],
         },
         images: [
-          "/imgs/ui-2-pc-1.png",
-          "/imgs/ui-2-pc-2.png",
-          "/imgs/ui-2-pc-3.png",
-          "/imgs/ui-2-mobile-1.png",
-          "/imgs/ui-2-mobile-2.png",
-          "/imgs/ui-2-mobile-3.png",
+          "/imgs/ui-2-pc-1.webp",
+          "/imgs/ui-2-pc-2.webp",
+          "/imgs/ui-2-pc-3.webp",
+          "/imgs/ui-2-mobile-1.webp",
+          "/imgs/ui-2-mobile-2.webp",
+          "/imgs/ui-2-mobile-3.webp",
         ],
       },
       {
@@ -353,7 +353,7 @@ export const sections: SectionData[] = [
           zh: ["Web UI/UX", "Information Architecture"],
           en: ["Web UI/UX", "Information Architecture"],
         },
-        images: ["/imgs/ui-3-1.png"],
+        images: ["/imgs/ui-3-1.webp"],
       },
     ],
   },
