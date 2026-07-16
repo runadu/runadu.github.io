@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite --port=3000",
     "build": "vite build",
+    "postbuild": "touch docs/.nojekyll",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf docs",
     "lint": "tsc --noEmit",
     "format": "prettier . --write",
     "format:check": "prettier . --check"

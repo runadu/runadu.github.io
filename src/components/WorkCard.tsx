@@ -22,10 +22,12 @@ export default function WorkCard({
   const singleImage = (item.images?.length || 0) === 1;
 
   return (
-    <article className="rounded-2xl border border-zinc-200/80 bg-white/70 p-6 transition 
+    <article
+      className="rounded-2xl border border-zinc-200/80 bg-white/70 p-6 transition 
     hover:border-[#AF5F3C]/25 hover:bg-[#AF5F3C]/6 md:p-8 
-    dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#E8BA97]/35 dark:hover:bg-[#E8BA97]/[0.07]">
-      <div className="grid gap-8 lg:grid-cols-[480px_1fr] xl:grid-cols-[580px_1fr] 2xl:grid-cols-[680px_1fr]">
+    dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-[#E8BA97]/35 dark:hover:bg-[#E8BA97]/[0.07]"
+    >
+      <div className="grid gap-8 lg:grid-cols-[480px_1fr] xl:grid-cols-[580px_1fr] 2xl:grid-cols-[780px_1fr]">
         <div className="space-y-5">
           <div className="space-y-3">
             <h5 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
