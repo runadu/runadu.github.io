@@ -1,19 +1,22 @@
-import { useState } from "react";
-import { motion } from "motion/react";
-import { Moon, Sun } from "lucide-react";
+import { navItems } from "@/config/navigation";
+import { useSectionNavigation } from "@/features/portfolio/hooks/useSectionNavigation";
+import AboutSection from "@/features/portfolio/components/AboutSection";
+import SkillsSection from "@/features/portfolio/components/SkillsSection";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, MotionConfig, useReducedMotion } from "motion/react";
 
-import Navbar from "./components/Navbar";
-import MobileNavbar from "./components/MobileNavbar";
-import PortfolioSection from "./components/PortfolioSection";
-import Lightbox from "./components/Lightbox";
-import ScrollIndicator from "./components/ScrollIndicator";
-import SiteMotionBackground from "./components/SiteMotionBackground";
+import Navbar from "@/components/layout/Navbar";
+import MobileNavbar from "@/components/layout/MobileNavbar";
+import BackgroundControlsPanel from "@/components/layout/BackgroundControlsPanel";
+import ProjectsSection from "@/features/portfolio/components/ProjectsSection";
+import Lightbox from "@/features/portfolio/components/Lightbox";
+import ScrollIndicator from "@/features/portfolio/components/ScrollIndicator";
+import SiteMotionBackground from "@/components/layout/SiteMotionBackground";
+import WorkDetail from "@/features/portfolio/components/WorkDetail";
 
-import { footerContent, heroContent, intro, sections } from "./data/portfolio";
-import { useLocale } from "./hooks/useLocale";
-import { useTheme } from "./hooks/useTheme";
-import type { Locale } from "./types";
-import { getLocalizedText } from "./types";
+import { sections } from "@/features/portfolio/data";
+import { useLocale } from "@/hooks/useLocale";
+import { useTheme } from "@/hooks/useTheme";
 
 type LightboxState = {
   images: string[];
@@ -21,75 +24,53 @@ type LightboxState = {
   title: string;
 } | null;
 
-const switchButtonBase =
-  "inline-flex h-8 items-center justify-center rounded-full border px-3 text-xs transition-colors";
-const switchButtonIdle =
-  "border-zinc-200 text-zinc-700 hover:border-[#AF5F3C]/30 hover:bg-[#AF5F3C]/10 hover:text-zinc-900 dark:border-white/10 dark:text-white/80 dark:hover:border-[#E8BA97]/40 dark:hover:bg-[#E8BA97]/10 dark:hover:text-white";
-const switchButtonActive =
-  "border-[#AF5F3C]/90 bg-[#AF5F3C]/90 text-white dark:border-white dark:bg-white dark:text-black";
-
-function DesktopControls({
-  locale,
-  theme,
-  onChangeLocale,
-  onToggleTheme,
-}: {
-  locale: Locale;
-  theme: "dark" | "light";
-  onChangeLocale: (locale: Locale) => void;
-  onToggleTheme: () => void;
-}) {
-  return (
-    <div className="fixed right-4 top-4 z-[99] hidden items-center gap-2 md:flex">
-      <button
-        onClick={() => onChangeLocale("zh")}
-        className={`${switchButtonBase} ${
-          locale === "zh" ? switchButtonActive : switchButtonIdle
-        }`}
-        type="button"
-        aria-pressed={locale === "zh"}
-      >
-        中文
-      </button>
-
-      <button
-        onClick={() => onChangeLocale("en")}
-        className={`${switchButtonBase} ${
-          locale === "en" ? switchButtonActive : switchButtonIdle
-        }`}
-        type="button"
-        aria-pressed={locale === "en"}
-      >
-        EN
-      </button>
-
-      <button
-        type="button"
-        onClick={onToggleTheme}
-        className={`${switchButtonBase} ${switchButtonIdle} gap-1 px-0`}
-        aria-label={
-          theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-        }
-      >
-        {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-        <span className="text-sm">
-          {theme === "dark"
-            ? locale === "zh"
-              ? "淺色模式"
-              : "Light Mode"
-            : locale === "zh"
-              ? "深色模式"
-              : "Dark Mode"}
-        </span>
-      </button>
-    </div>
-  );
-}
-
 export default function App() {
   const { locale, setLocale } = useLocale();
   const { theme, toggleTheme } = useTheme();
+  const reduceMotion = Boolean(useReducedMotion());
+  const [cursorEffectsEnabled, setCursorEffectsEnabled] = useState(true);
+  const [selectedProjectIndices, setSelectedProjectIndices] = useState<
+    Record<string, number>
+  >({});
+  const selectProject = useCallback((sectionId: string, index: number) => {
+    setSelectedProjectIndices((current) => ({
+      ...current,
+      [sectionId]: index,
+    }));
+  }, []);
   const [lightbox, setLightbox] = useState<LightboxState>(null);
+  const [showGridBackground, setShowGridBackground] = useState(true);
+  const [textScale, setTextScale] = useState(1);
+  const { activeSectionId, activeWorkId } = useSectionNavigation();
+  const mainRef = useRef<HTMLElement>(null);
+  const activeWork = sections
+    .flatMap((section) => section.items.map((item) => ({ section, item })))
+    .find(({ item }) => item.id === activeWorkId);
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "instant" });
+    if (activeWork) {
+      const index = activeWork.section.items.findIndex(
+        (item) => item.id === activeWorkId,
+      );
+      setSelectedProjectIndices((current) =>
+        current[activeWork.section.id] === index
+          ? current
+          : { ...current, [activeWork.section.id]: index },
+      );
+    }
+  }, [activeWorkId, activeSectionId]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--text-scale",
+      String(textScale),
+    );
+
+    return () => {
+      document.documentElement.style.removeProperty("--text-scale");
+    };
+  }, [textScale]);
 
   const handleOpenLightbox = (
     images: string[],
@@ -103,122 +84,123 @@ export default function App() {
     setLightbox(null);
   };
 
+  const visualControls = (
+    <BackgroundControlsPanel
+      locale={locale}
+      showGridBackground={showGridBackground}
+      onShowGridBackgroundChange={setShowGridBackground}
+      textScale={textScale}
+      onTextScaleChange={setTextScale}
+      cursorEffectsEnabled={cursorEffectsEnabled}
+      onCursorEffectsChange={setCursorEffectsEnabled}
+      onReset={() => {
+        setShowGridBackground(true);
+        setTextScale(1);
+        setCursorEffectsEnabled(true);
+      }}
+    />
+  );
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f8f5f1]/88 text-zinc-900 transition-colors dark:bg-[#171312]/88 dark:text-white">
-      <SiteMotionBackground theme={theme} />
-
-      <DesktopControls
-        locale={locale}
-        theme={theme}
-        onChangeLocale={setLocale}
-        onToggleTheme={toggleTheme}
-      />
-
-      <Navbar
-        locale={locale}
-        description={getLocalizedText(locale, intro.description)}
-      />
-
-      <MobileNavbar
-        locale={locale}
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        onChangeLocale={setLocale}
-        description={getLocalizedText(locale, intro.description)}
-      />
-
-      <ScrollIndicator theme={theme} />
-
-      <main className="relative z-10 mx-auto px-4 py-8 md:ml-80 md:px-8 md:py-12 lg:px-10">
-        <section id="about" className="scroll-mt-24 py-6 md:py-10">
-          <div className="mb-8 md:mb-10">
-            <p className="mb-2 text-xs uppercase tracking-[0.24em] text-zinc-400 dark:text-white/30">
-              {getLocalizedText(locale, heroContent.sectionLabel)}
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-2xl p-6  md:p-8 dark:from-white/[0.06] dark:to-white/[0.02]"
-          >
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <h1 className="text-3xl font-semibold leading-tight tracking-tight text-zinc-900 dark:text-white md:text-4xl">
-                  {getLocalizedText(locale, heroContent.title)}
-                </h1>
-                <p className="max-w-2xl text-sm leading-7 text-zinc-600 dark:text-white/70">
-                  {getLocalizedText(locale, heroContent.description)}
-                </p>
-              </div>
-
-              <div className="space-y-3 pt-2 text-xs text-zinc-600 dark:text-white/60">
-                <div className="space-y-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400 dark:text-white/40">
-                    Frontend
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {heroContent.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-md border border-zinc-200 px-2.5 py-1 text-sm text-zinc-600 dark:border-white/10 dark:text-white/70"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400 dark:text-white/40">
-                    Backend
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {heroContent.backendSkills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-md border border-zinc-200 px-2.5 py-1 text-sm text-zinc-600 dark:border-white/10 dark:text-white/70"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        <div className="space-y-20 py-12">
-          {sections.map((section) => (
-            <div key={section.id}>
-              <PortfolioSection
-                section={section}
-                locale={locale}
-                onOpenLightbox={handleOpenLightbox}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* <footer id="contact" className="py-10">
-          <div className="flex flex-col gap-4 border-t border-zinc-200 pt-6 text-sm dark:border-white/10 md:flex-row md:items-center md:justify-between">
-            <div className="text-center text-zinc-400 dark:text-white/30">
-              {footerContent.copyright}
-            </div>
-          </div>
-        </footer> */}
-      </main>
-
-      {lightbox && (
-        <Lightbox
-          images={lightbox.images}
-          initialIndex={lightbox.startIndex}
-          title={lightbox.title}
-          onClose={handleCloseLightbox}
+    <MotionConfig reducedMotion={reduceMotion ? "always" : "never"}>
+      <div
+        className={`relative min-h-screen overflow-hidden text-zinc-900 transition-colors dark:text-white ${reduceMotion ? "reduce-motion" : ""} ${showGridBackground ? "bg-page/88 dark:bg-page-dark/88" : "bg-page dark:bg-page-dark"}`}
+      >
+        <SiteMotionBackground
+          theme={theme}
+          showGridBackground={showGridBackground}
+          reduceMotion={reduceMotion}
+          cursorEffectsEnabled={cursorEffectsEnabled}
         />
-      )}
-    </div>
+
+        <Navbar
+          visualControls={visualControls}
+          locale={locale}
+          activeSectionId={activeSectionId}
+          theme={theme}
+          onChangeLocale={setLocale}
+          onToggleTheme={toggleTheme}
+        />
+
+        <MobileNavbar
+          visualControls={visualControls}
+          locale={locale}
+          activeSectionId={activeSectionId}
+          theme={theme}
+          onChangeLocale={setLocale}
+          onToggleTheme={toggleTheme}
+        />
+
+        <ScrollIndicator
+          selectedProjectIndices={selectedProjectIndices}
+          onSelectProject={selectProject}
+          workSection={activeWork?.section}
+          activeWorkId={activeWork?.item.id}
+          theme={theme}
+          locale={locale}
+          activeSectionId={activeSectionId}
+        />
+
+        <main
+          ref={mainRef}
+          className={`fixed inset-x-0 bottom-0 z-10 mx-auto w-full overflow-y-auto ${activeWork ? "top-16 py-4 sm:py-6 md:py-8" : "top-16 overflow-hidden"}`}
+        >
+          {activeWork ? (
+            <WorkDetail
+              key={activeWork.item.id}
+              onOpenLightbox={handleOpenLightbox}
+              item={activeWork.item}
+              section={activeWork.section}
+              locale={locale}
+              onBack={() => {
+                window.location.hash = activeWork.section.id;
+              }}
+            />
+          ) : (
+            <>
+              {navItems.map((navItem) => {
+                const id = navItem.href.slice(1);
+                const active = activeSectionId === id;
+                if (id === "about")
+                  return (
+                    <AboutSection key={id} locale={locale} active={active} />
+                  );
+                if (id === "skills")
+                  return (
+                    <SkillsSection key={id} locale={locale} active={active} />
+                  );
+                const section = sections.find((entry) => entry.id === id);
+                if (!section) return null;
+                return (
+                  <div
+                    key={id}
+                    className={`${active ? "flex section-view-enter" : "hidden"} section-shell items-center overflow-hidden`}
+                  >
+                    <ProjectsSection
+                      selectedIndex={selectedProjectIndices[id] ?? 0}
+                      onSelectProject={(index) => selectProject(id, index)}
+                      section={section}
+                      locale={locale}
+                      onOpenLightbox={handleOpenLightbox}
+                    />
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </main>
+
+        <AnimatePresence>
+          {lightbox && (
+            <Lightbox
+              images={lightbox.images}
+              initialIndex={lightbox.startIndex}
+              title={lightbox.title}
+              onClose={handleCloseLightbox}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+    </MotionConfig>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Locale } from "../types";
+import type { Locale } from "@/types";
 
 export function useLocale() {
   const [locale, setLocale] = useState<Locale>(() => {
