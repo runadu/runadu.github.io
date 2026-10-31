@@ -498,3 +498,32 @@
 .project-placeholder.project-placeholder-detail {
   @apply mx-auto w-full max-w-3xl gap-6 px-6 py-8 md:px-8 md:py-10;
 }
+
+/* Shared image preview surface for project listings and detail pages. */
+.tech-panel.project-preview-panel {
+  --preview-accent: var(--color-brand);
+  background-color: color-mix(in srgb, var(--color-page) 20%, transparent);
+  background-image:
+    radial-gradient(
+      color-mix(in srgb, var(--preview-accent) 30%, transparent) 0.65px,
+      transparent 0.65px
+    ),
+    linear-gradient(
+      color-mix(in srgb, var(--preview-accent) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--preview-accent) 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    1.125rem 1.125rem,
+    2rem 2rem,
+    2rem 2rem;
+  backdrop-filter: blur(0.125rem);
+}
+.dark .tech-panel.project-preview-panel {
+  --preview-accent: var(--color-brand-dark);
+  background-color: color-mix(in srgb, var(--color-page-dark) 20%, transparent);
+}

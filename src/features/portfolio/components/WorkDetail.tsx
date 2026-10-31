@@ -51,7 +51,7 @@ export default function WorkDetail({
 
   return (
     <article className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 md:px-8 xl:ml-56 xl:mr-8 xl:w-auto xl:max-w-none 2xl:mx-auto 2xl:w-full 2xl:max-w-6xl">
-      <div className="mb-5">
+      <div className="mb-5 xl:hidden">
         <button
           type="button"
           onClick={onBack}
@@ -127,7 +127,7 @@ export default function WorkDetail({
               locale === "zh" ? "專案預設封面" : "Default project cover"
             }
           >
-            <div className="project-placeholder project-placeholder-detail">
+            <div className="tech-panel project-preview-panel project-placeholder project-placeholder-detail">
               <span
                 className="project-mark project-mark-detail mt-8 md:mt-12"
                 aria-hidden="true"
@@ -157,7 +157,7 @@ export default function WorkDetail({
                       ? `放大檢視 ${title} 圖片 ${imageIndex + 1}`
                       : `Open ${title} image ${imageIndex + 1}`
                   }
-                  className="focus-ring group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden border border-zinc-200 bg-page/60 transition-colors hover:border-brand/60 dark:border-white/10 dark:bg-page-dark/60 dark:hover:border-brand-dark/60"
+                  className="focus-ring tech-panel project-preview-panel group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden transition-colors hover:border-brand/60 dark:hover:border-brand-dark/60"
                 >
                   <img
                     src={images[imageIndex]}

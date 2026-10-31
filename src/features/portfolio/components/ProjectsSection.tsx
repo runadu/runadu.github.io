@@ -153,7 +153,7 @@ export default function ProjectsSection({
                   ? `放大檢視 ${title} 圖片 ${index + 1}`
                   : `Open ${title} image ${index + 1}`
               }
-              className="group relative aspect-[3/2] min-w-0 overflow-hidden md:aspect-auto md:min-h-0 border border-zinc-200 bg-zinc-100/50 transition-colors hover:border-brand/60 dark:border-white/10 dark:bg-white/[0.025] dark:hover:border-brand-dark/60"
+              className="group relative aspect-[3/2] min-w-0 overflow-hidden md:aspect-auto md:min-h-0 border border-zinc-200 bg-page/60 transition-colors hover:border-brand/60 dark:border-white/10 dark:bg-page-dark/60 dark:hover:border-brand-dark/60"
             >
               <img
                 src={image}
@@ -203,11 +203,7 @@ export default function ProjectsSection({
       </article>
 
       <div className="hidden min-h-0 flex-1 grid-cols-[minmax(0,1.35fr)_minmax(15rem,1.05fr)] grid-rows-1 gap-5 xl:grid">
-        <div className="tech-panel relative hidden min-h-0 min-w-0 flex-col overflow-hidden p-2.5 lg:flex lg:p-6">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-50 [background-image:radial-gradient(#AF5F3C_0.65px,transparent_0.65px)] [background-size:18px_18px] dark:opacity-20"
-          />
+        <div className="tech-panel project-preview-panel relative hidden min-h-0 min-w-0 flex-col overflow-hidden p-2.5 lg:flex lg:p-6">
           <span className="relative z-10 mb-1 shrink-0 font-mono text-xs uppercase tracking-[0.16em] text-zinc-400 dark:text-white/35 sm:mb-2 sm:text-xs">
             Screen / {String(imageIndex + 1).padStart(2, "0")}
           </span>

@@ -1,6 +1,6 @@
 import { navItems } from "@/config/navigation";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowUp } from "lucide-react";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import { useState } from "react";
 
 import { sections } from "../data";
@@ -60,7 +60,7 @@ export default function ScrollIndicator({
         });
         window.scrollTo({ top: 0, behavior });
       }}
-      className="focus-ring group pointer-events-auto relative flex h-full min-h-16 w-full flex-col items-start pb-4 text-brand-strong transition-colors dark:text-brand-dark"
+      className="focus-ring group pointer-events-auto relative flex h-full min-h-16 w-full cursor-pointer flex-col items-start pb-4 text-brand/75 transition-colors duration-200 hover:text-brand-strong dark:text-brand-dark/70 dark:hover:text-brand-dark"
     >
       <span className="flex min-h-10 shrink-0 items-center gap-3">
         <span className="grid h-8 w-8 place-items-center">
@@ -68,7 +68,7 @@ export default function ScrollIndicator({
             size={18}
             strokeWidth={1.75}
             aria-hidden="true"
-            className="transition-transform group-hover:-translate-y-0.5 motion-reduce:transform-none"
+            className="transition-transform duration-200 group-hover:-translate-y-1 group-focus-visible:-translate-y-1 motion-reduce:transform-none"
           />
         </span>
         <span className="font-mono text-xs uppercase tracking-widest">
@@ -77,7 +77,7 @@ export default function ScrollIndicator({
       </span>
       <span
         aria-hidden="true"
-        className="ml-4 w-px flex-1 bg-current opacity-35"
+        className="ml-4 w-px flex-1 bg-current opacity-35 transition-opacity duration-200 group-hover:opacity-75 group-focus-visible:opacity-75"
       />
     </button>
   );
@@ -110,27 +110,19 @@ export default function ScrollIndicator({
       >
         <div className="min-h-12">{backToTop}</div>
         <ol className="pointer-events-auto flex flex-col items-start gap-1 py-2">
-          <li className="relative w-full">
+          <li className="relative mb-3 w-full">
             <a
-              href="#about"
-              className="focus-ring group relative flex min-h-8 items-center gap-1.5 text-zinc-600 transition-colors hover:text-brand-strong dark:text-white/70 dark:hover:text-brand-dark"
+              href={`#${workSection.id}`}
+              className="focus-ring group inline-flex min-h-8 items-center gap-2 text-xs text-zinc-500 transition-colors hover:text-brand-strong dark:text-white/50 dark:hover:text-brand-dark"
             >
-              <span
+              <ArrowLeft
+                size={14}
                 aria-hidden="true"
-                className={`h-px w-3 shrink-0 origin-right scale-x-80 transition-transform group-hover:scale-x-100 motion-reduce:transition-none ${dashColor}`}
+                className="transition-transform group-hover:-translate-x-0.5 motion-reduce:transform-none"
               />
-              <span
-                aria-hidden="true"
-                className="w-4 shrink-0 font-mono text-xs tracking-wide text-zinc-400 dark:text-white/35"
-              >
-                00
-              </span>
-              <span className="text-xs tracking-wide">
-                {locale === "zh" ? "返回主頁" : "Back to home"}
-              </span>
+              {locale === "zh" ? "返回作品列表" : "All projects"}
             </a>
           </li>
-
           {workSection.items.map((item, index) => {
             const active = item.id === activeWorkId;
             const hovered = index === hoveredIndex;
@@ -175,7 +167,7 @@ export default function ScrollIndicator({
             );
           })}
         </ol>
-        <div>{navigationOrnament}</div>
+        <div className="self-end">{navigationOrnament}</div>
       </nav>
     );
   }
@@ -283,7 +275,7 @@ export default function ScrollIndicator({
           );
         })}
       </ol>
-      <div>{navigationOrnament}</div>
+      <div className="self-end">{navigationOrnament}</div>
     </nav>
   );
 }
