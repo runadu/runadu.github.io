@@ -193,6 +193,7 @@ export default function App() {
         <AnimatePresence>
           {lightbox && (
             <Lightbox
+              locale={locale}
               images={lightbox.images}
               initialIndex={lightbox.startIndex}
               title={lightbox.title}

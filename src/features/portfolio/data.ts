@@ -5,6 +5,23 @@ import type {
   SectionData,
 } from "./types";
 
+const examRegistrationImages = {
+  desktop: [
+    "/imgs/sp-pc-1.png",
+    "/imgs/sp-pc-s1.png",
+    "/imgs/sp-pc-s2.png",
+    "/imgs/sp-pc-s3.png",
+    "/imgs/sp-pc-s4.png",
+  ],
+  mobile: [
+    "/imgs/sp-mb-1.png",
+    "/imgs/sp-mb-s1.png",
+    "/imgs/sp-mb-s2.png",
+    "/imgs/sp-mb-s3.png",
+    "/imgs/sp-mb-s4.png",
+  ],
+};
+
 export const skillGroups = [
   {
     mark: "D",
@@ -602,6 +619,57 @@ const sectionData: SectionData[] = [
           en: ["Web UI/UX", "Information Architecture"],
         },
         images: ["/imgs/ui-3-1.webp"],
+      },
+      {
+        id: "arch-4",
+        title: {
+          zh: "考試報名網站設計",
+          en: "Exam Registration Website Design",
+        },
+        subtitle: {
+          zh: "多步驟報名流程・響應式介面",
+          en: "Multi-step Registration · Responsive Interfaces",
+        },
+        description: {
+          zh: "規劃考試資訊首頁與線上報名介面，將個資聲明、考生資料、付款及報名完成拆分為四個步驟。透過進度提示、資料摘要與明確的行動入口，整理報名過程的資訊層級，並設計桌面與手機版面，讓不同裝置保有一致的操作脈絡。",
+          en: "Designed an exam information homepage and online registration interfaces, organizing privacy consent, candidate details, payment, and confirmation into four steps. Used progress indicators, data summaries, and clear calls to action to structure the registration experience across desktop and mobile layouts.",
+        },
+        tags: {
+          zh: ["介面設計", "使用者體驗", "報名流程", "表單設計", "響應式版面"],
+          en: [
+            "UI Design",
+            "User Experience",
+            "Registration Flow",
+            "Form Design",
+            "Responsive Layout",
+          ],
+        },
+        note: {
+          zh: "圖片 01–05 為桌面版，06–10 為對應手機版，依序展示首頁、個資聲明、考生資料、付款與報名完成畫面。",
+          en: "Images 01–05 show desktop layouts; 06–10 show the corresponding mobile layouts. Each set covers the homepage, privacy consent, candidate details, payment, and confirmation.",
+        },
+        caseStudy: {
+          role: {
+            zh: "網站介面設計、報名流程規劃、桌面與手機版面設計",
+            en: "Website interface design, registration flow planning, and desktop and mobile layouts",
+          },
+          problem: {
+            zh: "網站同時承載考試資訊與線上報名，需要區分資訊瀏覽與報名操作。報名過程包含多位考生資料、費用與付款資訊，也需要在手機較窄的畫面中維持清楚的層級與步驟提示。",
+            en: "The website combines exam information with online registration, requiring a clear distinction between browsing and registering. Multiple candidate records, fees, and payment information also needed clear hierarchy and step indicators on narrow mobile screens.",
+          },
+          approach: {
+            zh: "首頁以區塊整理最新消息、考程、常見問題與考場資訊；報名頁以四步驟進度列標示目前位置及已完成步驟。桌面版使用表格呈現考生與費用，手機版將次要資料收進展開區域，並將付款表單與費用摘要改為上下排列。",
+            en: "Organized the homepage into news, schedules, FAQs, and exam locations. Added a four-step indicator to distinguish the current and completed registration steps. Used tables for candidate details and fees on desktop, while placing secondary details in expandable areas and stacking payment forms and fee summaries on mobile.",
+          },
+          outcome: {
+            zh: "完成首頁與四個報名步驟的桌面、手機介面設計，共 10 張畫面，呈現同一流程在不同寬度下的資訊重組與視覺一致性。",
+            en: "Created ten screen designs covering the homepage and four registration steps across desktop and mobile, demonstrating responsive information layouts and a consistent visual language.",
+          },
+        },
+        images: [
+          ...examRegistrationImages.desktop,
+          ...examRegistrationImages.mobile,
+        ],
       },
     ],
   },

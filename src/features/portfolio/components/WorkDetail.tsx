@@ -147,8 +147,8 @@ export default function WorkDetail({
             className="content-section"
             aria-label={locale === "zh" ? "專案圖片" : "Project images"}
           >
-            <div className="mx-auto w-full max-w-3xl">
-              <figure>
+            <div className="w-full md:border md:border-zinc-200 md:bg-page/20 md:p-5 dark:md:border-white/10 dark:md:bg-page-dark/20">
+              <figure className="min-w-0 md:flex md:flex-col">
                 <button
                   type="button"
                   onClick={() => onOpenLightbox(images, imageIndex, title)}
@@ -157,7 +157,7 @@ export default function WorkDetail({
                       ? `放大檢視 ${title} 圖片 ${imageIndex + 1}`
                       : `Open ${title} image ${imageIndex + 1}`
                   }
-                  className="focus-ring tech-panel project-preview-panel group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden transition-colors hover:border-brand/60 dark:hover:border-brand-dark/60"
+                  className="focus-ring tech-panel project-preview-panel group relative block aspect-[3/2] w-full cursor-zoom-in md:aspect-auto md:h-[min(60dvh,32rem)] overflow-hidden transition-colors hover:border-brand/60 dark:hover:border-brand-dark/60"
                 >
                   <img
                     src={images[imageIndex]}
@@ -169,12 +169,16 @@ export default function WorkDetail({
                     {locale === "zh" ? "放大檢視" : "Enlarge"}
                   </span>
                 </button>
+
                 <figcaption
                   aria-live="polite"
                   aria-atomic="true"
-                  className="mt-3 flex items-center justify-between gap-3"
+                  className="mt-3 flex items-center justify-between gap-3 md:order-first md:mb-4 md:mt-0"
                 >
                   <span className="font-mono text-xs tracking-widest text-zinc-400 dark:text-white/40">
+                    <span className="mr-3 hidden text-zinc-600 dark:text-white/60 md:inline">
+                      {locale === "zh" ? "畫面預覽" : "Preview"}
+                    </span>
                     {number(imageIndex + 1)} / {number(images.length)}
                   </span>
                   {images.length > 1 && (
@@ -211,40 +215,48 @@ export default function WorkDetail({
                 </figcaption>
               </figure>
               {images.length > 1 && (
-                <div
-                  role="group"
-                  aria-label={
-                    locale === "zh" ? "選擇專案圖片" : "Choose project image"
-                  }
-                  className="mt-4 flex gap-3 overflow-x-auto px-1 py-2"
-                >
-                  {images.map((image, index) => (
-                    <button
-                      key={`${image}-${index}`}
-                      type="button"
-                      onClick={() => setImageIndex(index)}
-                      aria-label={
-                        locale === "zh"
-                          ? `顯示圖片 ${index + 1}`
-                          : `Show image ${index + 1}`
-                      }
-                      aria-pressed={imageIndex === index}
-                      className={`focus-ring relative aspect-[3/2] w-24 shrink-0 overflow-hidden border transition-colors sm:w-28 ${imageIndex === index ? "border-brand ring-1 ring-brand dark:border-brand-dark dark:ring-brand-dark" : "border-zinc-200 opacity-60 hover:border-brand/50 hover:opacity-100 dark:border-white/15 dark:hover:border-brand-dark/50"}`}
-                    >
-                      <img
-                        loading="lazy"
-                        src={image}
-                        alt=""
-                        className="h-full w-full object-cover object-top"
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="absolute bottom-0 right-0 bg-page/90 px-1.5 py-0.5 font-mono text-xs text-zinc-600 dark:bg-page-dark/90 dark:text-white/65"
+                <div className="mt-5 min-w-0 md:border-t md:border-zinc-200 md:pt-4 dark:md:border-white/10">
+                  <p className="mb-4 hidden min-h-11 items-center justify-between gap-2 text-xs text-zinc-500 dark:text-white/50 md:flex">
+                    <span>{locale === "zh" ? "全部圖片" : "All images"}</span>
+                    <span className="font-mono text-zinc-400 dark:text-white/35">
+                      {number(images.length)}
+                    </span>
+                  </p>
+                  <div
+                    role="group"
+                    aria-label={
+                      locale === "zh" ? "選擇專案圖片" : "Choose project image"
+                    }
+                    className="grid grid-cols-4 content-start gap-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8"
+                  >
+                    {images.map((image, index) => (
+                      <button
+                        key={`${image}-${index}`}
+                        type="button"
+                        onClick={() => setImageIndex(index)}
+                        aria-label={
+                          locale === "zh"
+                            ? `顯示圖片 ${index + 1}`
+                            : `Show image ${index + 1}`
+                        }
+                        aria-pressed={imageIndex === index}
+                        className={`focus-ring relative aspect-[3/2] min-w-0 w-full overflow-hidden border transition-colors ${imageIndex === index ? "border-brand ring-1 ring-brand ring-offset-2 ring-offset-page dark:border-brand-dark dark:ring-brand-dark dark:ring-offset-page-dark" : "border-zinc-200 opacity-60 hover:border-brand/50 hover:opacity-100 dark:border-white/15 dark:hover:border-brand-dark/50"}`}
                       >
-                        {number(index + 1)}
-                      </span>
-                    </button>
-                  ))}
+                        <img
+                          loading="lazy"
+                          src={image}
+                          alt=""
+                          className="h-full w-full object-cover object-top"
+                        />
+                        <span
+                          aria-hidden="true"
+                          className={`absolute bottom-0 right-0 px-1.5 py-0.5 font-mono text-xs ${imageIndex === index ? "bg-brand-strong text-page" : "bg-page/90 text-zinc-600 dark:bg-page-dark/90 dark:text-white/65"}`}
+                        >
+                          {number(index + 1)}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
