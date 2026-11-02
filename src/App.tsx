@@ -3,7 +3,12 @@ import { useSectionNavigation } from "@/features/portfolio/hooks/useSectionNavig
 import AboutSection from "@/features/portfolio/components/AboutSection";
 import SkillsSection from "@/features/portfolio/components/SkillsSection";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, MotionConfig, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  MotionConfig,
+  useReducedMotion,
+} from "motion/react";
 
 import Navbar from "@/components/layout/Navbar";
 import MobileNavbar from "@/components/layout/MobileNavbar";
@@ -18,6 +23,8 @@ import { sections } from "@/features/portfolio/data";
 import { useLocale } from "@/hooks/useLocale";
 import { useTheme } from "@/hooks/useTheme";
 
+const idleDelay = 3 * 60 * 1000;
+
 type LightboxState = {
   images: string[];
   startIndex: number;
@@ -28,7 +35,61 @@ export default function App() {
   const { locale, setLocale } = useLocale();
   const { theme, toggleTheme } = useTheme();
   const reduceMotion = Boolean(useReducedMotion());
+  const [isIdle, setIsIdle] = useState(false);
   const [cursorEffectsEnabled, setCursorEffectsEnabled] = useState(true);
+  useEffect(() => {
+    setIsIdle(false);
+    if (reduceMotion) return;
+    let lastActivity = Date.now();
+    let timer: number | undefined;
+    const checkIdle = () => {
+      const remaining = idleDelay - (Date.now() - lastActivity);
+      if (remaining <= 0) {
+        setIsIdle(true);
+        timer = undefined;
+      } else {
+        timer = window.setTimeout(checkIdle, remaining);
+      }
+    };
+    const onActivity = () => {
+      lastActivity = Date.now();
+      setIsIdle(false);
+      if (timer === undefined && !document.hidden)
+        timer = window.setTimeout(checkIdle, idleDelay);
+    };
+    const onVisibilityChange = () => {
+      window.clearTimeout(timer);
+      timer = undefined;
+      setIsIdle(false);
+      if (!document.hidden) onActivity();
+    };
+    const events = [
+      "pointermove",
+      "pointerdown",
+      "click",
+      "keydown",
+      "wheel",
+      "touchstart",
+      "scroll",
+      "focus",
+    ] as const;
+    events.forEach((event) =>
+      window.addEventListener(event, onActivity, {
+        capture: true,
+        passive: true,
+      }),
+    );
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    if (!document.hidden) timer = window.setTimeout(checkIdle, idleDelay);
+    return () => {
+      window.clearTimeout(timer);
+      events.forEach((event) =>
+        window.removeEventListener(event, onActivity, true),
+      );
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [reduceMotion]);
+
   const [selectedProjectIndices, setSelectedProjectIndices] = useState<
     Record<string, number>
   >({});
@@ -189,6 +250,24 @@ export default function App() {
             </>
           )}
         </main>
+
+        <AnimatePresence>
+          {isIdle && !reduceMotion && (
+            <motion.div
+              key="idle-scene"
+              data-idle-overlay
+              aria-hidden="true"
+              initial={{ opacity: 0, backdropFilter: "grayscale(0)" }}
+              animate={{
+                opacity: 1,
+                backdropFilter: "grayscale(1)",
+              }}
+              exit={{ opacity: 0, backdropFilter: "grayscale(0)" }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="pointer-events-none fixed inset-0 z-[120]"
+            />
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {lightbox && (
