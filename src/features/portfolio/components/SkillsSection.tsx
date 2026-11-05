@@ -29,8 +29,13 @@ export default function SkillsSection({
         eyebrow="Capabilities"
         title="Skills"
         meta={`Skills / ${getSectionNumber("skills")}`}
+        mobileLink={{
+          href: "#about",
+          label: "Back to Top",
+          returnToStart: true,
+        }}
       >
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-6">
+        <div className="flex basis-full flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-6 md:basis-auto">
           <span className="flex items-baseline gap-1.5 whitespace-nowrap">
             <strong className="font-mono text-sm font-medium text-brand-emphasis sm:text-base">
               3yrs

@@ -35,7 +35,7 @@ export default function AboutSection({
         />
         <div className="grid min-h-0 flex-1 content-start gap-5 md:grid-cols-[1.1fr_0.9fr] md:content-normal md:gap-16">
           <div className="self-start">
-            <h1 className="text-3xl leading-[0.98] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-7xl">
+            <h1 className="text-3xl font-semibold leading-[0.98] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-7xl">
               Runa Du
             </h1>
             <h2 className="mt-2 font-mono text-xs uppercase tracking-[0.16em] text-brand-emphasis md:mt-4 md:text-sm">

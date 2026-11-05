@@ -1,3 +1,4 @@
+import { ArrowRight, ArrowUp } from "lucide-react";
 import type { ReactNode } from "react";
 
 type SectionHeaderProps = {
@@ -5,6 +6,7 @@ type SectionHeaderProps = {
   title?: string;
   meta?: string;
   children?: ReactNode;
+  mobileLink?: { href: string; label: string; returnToStart?: boolean };
   divided?: boolean;
 };
 
@@ -14,7 +16,10 @@ export default function SectionHeader({
   title,
   meta,
   children,
+  mobileLink,
 }: SectionHeaderProps) {
+  const LinkIcon = mobileLink?.returnToStart ? ArrowUp : ArrowRight;
+
   return (
     <header className="section-header">
       <div className="flex items-start justify-between gap-4">
@@ -23,7 +28,22 @@ export default function SectionHeader({
       </div>
       {(title || children) && (
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
-          {title && <h2 className="section-heading">{title}</h2>}
+          {title && (
+            <h2
+              className={`section-heading ${mobileLink ? "min-w-0 flex-1 md:flex-none" : ""}`}
+            >
+              {title}
+            </h2>
+          )}
+          {mobileLink && (
+            <a
+              href={mobileLink.href}
+              className="focus-ring inline-flex min-h-11 shrink-0 items-center gap-1 text-xs font-medium text-brand-emphasis md:hidden"
+            >
+              {mobileLink.label}
+              <LinkIcon size={14} aria-hidden="true" />
+            </a>
+          )}
           {children}
         </div>
       )}

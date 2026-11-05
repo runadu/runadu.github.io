@@ -54,7 +54,13 @@ export function useSectionNavigation() {
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 8) return;
       const target = event.target instanceof Element ? event.target : null;
-      if (target?.closest("[data-navigation-overlay]")) return;
+      const project = target?.closest<HTMLElement>("[data-project-scroll]");
+      if (
+        target?.closest("[data-navigation-overlay]") ||
+        (project && project.scrollHeight > project.clientHeight)
+      ) {
+        return;
+      }
       event.preventDefault();
       if (wheelLocked) return;
       wheelLocked = true;

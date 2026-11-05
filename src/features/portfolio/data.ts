@@ -490,8 +490,8 @@ const sectionData: SectionData[] = [
         },
         year: "2024",
         description: {
-          zh: "《Rhythm One 韻律一號》以外星與音樂節奏為主題的自主遊戲介面設計，結合扁平化與輕科技感的視覺風格。規劃標誌、配色、字體、角色與 UI 元件，延伸至主選單、選曲、遊玩、暫停及結算等畫面，建立一致的遊戲視覺體驗。",
-          en: "Rhythm One is a self-initiated game UI concept combining alien and musical rhythm themes with a flat, lightly futuristic visual style. Developed the logo, color palette, typography, character, and UI elements, extending them across home, stage selection, gameplay, pause, and results screens for a consistent visual experience.",
+          zh: "自主遊戲介面設計，為以外星世界為背景的節奏遊戲打造扁平、帶有科技感的視覺風格。設計涵蓋標誌、配色、字體、角色與介面元件，並延伸至主選單、選曲、遊玩、暫停與結算畫面。",
+          en: "For this personal UI design project, I designed the interface for an alien-themed rhythm game. I developed the logo, color palette, typography, character design, and UI components in a flat, subtly futuristic style, then applied them across the main menu, song selection, gameplay, pause, and results screens.",
         },
         caseStudy: {
           role: {
@@ -499,8 +499,8 @@ const sectionData: SectionData[] = [
             en: "Game interface design, visual guidelines, icons, and character concepts",
           },
           problem: {
-            zh: "將外星、唱片與節奏元素轉化為一致的介面語言，並在選單、遊玩與結算等不同情境中，清楚區分操作入口、狀態資訊與遊戲回饋。",
-            en: "Translate alien, vinyl record, and rhythm motifs into a consistent interface language, distinguishing actions, status information, and game feedback across menus, gameplay, and results screens.",
+            zh: "將飛行船、唱片與節奏元素融入各個畫面，維持一致的視覺風格，同時讓玩家在選單中找到操作入口、在遊玩時掌握遊戲狀態，並在結算時看懂自己的表現。",
+            en: "The challenge was to use spaceship, vinyl record, and rhythm motifs consistently across menus, gameplay, and results. Each screen needed to make it clear what players could do, what was happening in the game, and how they were performing.",
           },
           approach: {
             zh: "以深色背景搭配黃橙色重點，透過網格、波形與幾何元素建立輕科技感。先定義字體、配色與圖示風格，再拆解狀態列、按鈕、關卡卡片與評級等元件，延伸至各個遊戲畫面。",
@@ -611,8 +611,8 @@ const sectionData: SectionData[] = [
         },
         year: "2025",
         description: {
-          zh: "依據網站目標與使用情境，規劃一頁式網站的資訊架構與瀏覽動線，安排內容層級、區塊順序及主要行動入口。透過介面與響應式版面設計，讓使用者在不同裝置上都能清楚掌握資訊並完成操作。",
-          en: "Planned the information architecture and browsing flow of a one-page website around its goals and user scenarios, defining content hierarchy, section order, and primary calls to action. Designed the interface and responsive layouts to help users understand the content and complete tasks across devices.",
+          zh: "依據網站目標與使用情境，規劃一頁式網站的資訊架構與瀏覽動線，安排內容層級、區塊順序及主要行動入口。",
+          en: "Planned the information architecture and browsing flow of a one-page website around its goals and user scenarios, defining content hierarchy, section order, and primary calls to action.",
         },
         tags: {
           zh: ["網站介面與體驗設計", "資訊架構"],

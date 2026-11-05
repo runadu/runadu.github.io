@@ -1,4 +1,4 @@
-import { getSectionNumber } from "@/config/navigation";
+import { getSectionNumber, navItems } from "@/config/navigation";
 import TagList from "@/components/ui/TagList";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { AnimatePresence, motion } from "motion/react";
@@ -24,7 +24,10 @@ export default function ProjectsSection({
   onOpenLightbox,
 }: ProjectsSectionProps) {
   const [imageIndex, setImageIndex] = useState(0);
+  const [mobileImageIndex, setMobileImageIndex] = useState(0);
   const galleryRef = useRef<HTMLElement>(null);
+  const nextSection =
+    navItems[navItems.findIndex(({ href }) => href === `#${section.id}`) + 1];
   const item = section.items[selectedIndex];
   const title = getLocalizedText(locale, item.title);
   const subtitle = getLocalizedText(locale, item.subtitle);
@@ -44,6 +47,7 @@ export default function ProjectsSection({
 
   useEffect(() => {
     setImageIndex(0);
+    setMobileImageIndex(0);
   }, [selectedIndex]);
 
   useEffect(() => {
@@ -77,9 +81,33 @@ export default function ProjectsSection({
         eyebrow="Projects"
         title={getLocalizedText(locale, section.title)}
         meta={`Projects / ${getSectionNumber(section.id)}`}
+        mobileLink={nextSection}
       />
 
-      <article className="flex min-h-0 flex-1 flex-col overflow-hidden border border-zinc-200 bg-white/25 p-3 dark:border-white/10 dark:bg-white/[0.02] xl:hidden">
+      <nav
+        aria-label={locale === "zh" ? "作品分類" : "Project categories"}
+        className="mb-3 grid shrink-0 grid-cols-3 gap-1 md:hidden"
+      >
+        {navItems
+          .filter(({ href }) => href !== "#about" && href !== "#skills")
+          .map((category) => (
+            <a
+              key={category.href}
+              href={category.href}
+              aria-current={
+                category.href === `#${section.id}` ? "location" : undefined
+              }
+              className="focus-ring grid min-h-11 place-items-center border border-zinc-200 px-1 py-2 text-center text-xs leading-tight text-zinc-600 aria-[current=location]:border-brand-strong aria-[current=location]:bg-brand-strong aria-[current=location]:text-white dark:border-white/15 dark:text-white/70 dark:aria-[current=location]:border-brand-dark dark:aria-[current=location]:bg-brand-dark dark:aria-[current=location]:text-page-dark"
+            >
+              {category.label}
+            </a>
+          ))}
+      </nav>
+
+      <article
+        data-project-scroll
+        className="flex min-h-0 flex-col overflow-y-auto overscroll-y-contain border border-zinc-200 bg-white/25 p-3 pb-2 dark:border-white/10 dark:bg-white/[0.02] md:flex-1 md:pb-3 xl:hidden"
+      >
         <header className="flex shrink-0 items-start justify-between gap-3 border-b border-zinc-200/70 pb-3 dark:border-white/10">
           <div className="min-w-0">
             <p className="mb-1 font-mono text-xs uppercase tracking-[0.16em] text-brand-emphasis">
@@ -87,7 +115,7 @@ export default function ProjectsSection({
               {String(section.items.length).padStart(2, "0")}
               {item.year && ` · ${item.year}`}
             </p>
-            <h3 className="line-clamp-1 text-base font-semibold leading-5 tracking-tight text-zinc-900 dark:text-white">
+            <h3 className="text-base font-semibold leading-5 tracking-tight text-zinc-900 dark:text-white md:line-clamp-1">
               {title}
             </h3>
             {subtitle && (
@@ -106,7 +134,7 @@ export default function ProjectsSection({
                 )
               }
               aria-label={locale === "zh" ? "上一個專案" : "Previous project"}
-              className="grid h-9 w-9 place-items-center border border-zinc-200 text-zinc-600 transition-colors hover:border-brand/40 hover:text-brand-strong dark:border-white/10 dark:text-white/65 dark:hover:border-brand-dark/40 dark:hover:text-brand-dark"
+              className="focus-ring grid size-11 place-items-center border border-zinc-200 text-zinc-600 transition-colors hover:border-brand/40 hover:text-brand-strong dark:border-white/10 dark:text-white/65 dark:hover:border-brand-dark/40 dark:hover:text-brand-dark md:size-9"
             >
               <ChevronLeft size={17} />
             </button>
@@ -116,17 +144,42 @@ export default function ProjectsSection({
                 selectProject((selectedIndex + 1) % section.items.length)
               }
               aria-label={locale === "zh" ? "下一個專案" : "Next project"}
-              className="grid h-9 w-9 place-items-center border border-zinc-200 text-zinc-600 transition-colors hover:border-brand/40 hover:text-brand-strong dark:border-white/10 dark:text-white/65 dark:hover:border-brand-dark/40 dark:hover:text-brand-dark"
+              className="focus-ring grid size-11 place-items-center border border-zinc-200 text-zinc-600 transition-colors hover:border-brand/40 hover:text-brand-strong dark:border-white/10 dark:text-white/65 dark:hover:border-brand-dark/40 dark:hover:text-brand-dark md:size-9"
             >
               <ChevronRight size={17} />
             </button>
           </div>
         </header>
-        <p className="mt-2 shrink-0 text-xs leading-5 text-zinc-600 dark:text-white/60">
+        <p className="mt-2 shrink-0 text-sm leading-5 text-zinc-600 dark:text-white/60 md:text-xs">
           {description}
         </p>
         <div
-          className="mt-3 grid min-h-0 flex-1 content-start gap-1.5 md:h-48 md:max-h-[28dvh] md:flex-none md:auto-rows-fr md:content-stretch lg:h-56"
+          key={item.id}
+          onScroll={(event) => {
+            const { children, scrollLeft, scrollWidth, clientWidth } =
+              event.currentTarget;
+            const [first, second] = children;
+            if (
+              !(first instanceof HTMLElement) ||
+              !(second instanceof HTMLElement)
+            ) {
+              return;
+            }
+
+            const maxScroll = scrollWidth - clientWidth;
+            const step = second.offsetLeft - first.offsetLeft;
+            if (maxScroll <= 0 || step <= 0) {
+              setMobileImageIndex(0);
+              return;
+            }
+
+            setMobileImageIndex(
+              scrollLeft >= maxScroll - 1
+                ? images.length - 1
+                : Math.round(scrollLeft / step),
+            );
+          }}
+          className="relative mt-3 flex min-h-0 shrink-0 snap-x snap-mandatory gap-1.5 overflow-x-auto overscroll-x-contain pb-2 md:grid md:h-48 md:max-h-[28dvh] md:flex-none md:auto-rows-fr md:content-stretch md:overflow-visible md:pb-0 lg:h-56"
           style={{
             gridTemplateColumns: `repeat(${Math.max(1, Math.min(images.length, 3))}, minmax(0, 1fr))`,
           }}
@@ -153,12 +206,12 @@ export default function ProjectsSection({
                   ? `放大檢視 ${title} 圖片 ${index + 1}`
                   : `Open ${title} image ${index + 1}`
               }
-              className="group relative aspect-[3/2] min-w-0 overflow-hidden md:aspect-auto md:min-h-0 border border-zinc-200 bg-page/60 transition-colors hover:border-brand/60 dark:border-white/10 dark:bg-page-dark/60 dark:hover:border-brand-dark/60"
+              className={`focus-ring group relative aspect-video max-w-44 min-w-0 overflow-hidden border border-zinc-200 bg-page/60 transition-colors hover:border-brand/60 dark:border-white/10 dark:bg-page-dark/60 dark:hover:border-brand-dark/60 md:aspect-auto md:max-w-none md:min-h-0 shrink-0 snap-start ${images.length === 1 ? "mx-auto w-full md:mx-0" : "w-4/5"} md:w-full`}
             >
               <img
                 src={image}
                 alt={`${title} ${index + 1}`}
-                className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03] md:object-contain md:object-center"
+                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
               />
               <span className="absolute bottom-1 right-1 bg-page/85 px-1.5 py-0.5 font-mono text-xs text-zinc-600 dark:bg-page-dark/85 dark:text-white/60">
                 {String(index + 1).padStart(2, "0")}
@@ -166,12 +219,23 @@ export default function ProjectsSection({
             </button>
           ))}
         </div>
+        {images.length > 1 && (
+          <p className="shrink-0 text-xs text-zinc-600 dark:text-white/65 md:hidden">
+            <span className="font-mono tabular-nums">
+              {String(mobileImageIndex + 1).padStart(2, "0")} /{" "}
+              {String(images.length).padStart(2, "0")}
+            </span>
+            {locale === "zh"
+              ? " · 左右滑動，點圖放大"
+              : " · Swipe to browse, tap to enlarge"}
+          </p>
+        )}
         {tags.length > 0 && (
           <div className="mt-4 shrink-0 border-t border-zinc-200/70 pt-3 dark:border-white/10">
             <TagList tags={tags.slice(0, 4)} />
           </div>
         )}
-        <div className="mt-auto flex shrink-0 flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-zinc-200/70 pt-3 dark:border-white/10">
+        <div className="mt-2 flex shrink-0 flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-zinc-200/70 pt-1 dark:border-white/10 md:mt-auto md:pt-3">
           <a
             href={`#work/${item.id}`}
             className="focus-ring inline-flex min-h-10 items-center gap-2 text-xs font-medium text-brand-emphasis"

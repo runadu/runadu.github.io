@@ -104,12 +104,22 @@ export default function App() {
   const [textScale, setTextScale] = useState(1);
   const { activeSectionId, activeWorkId } = useSectionNavigation();
   const mainRef = useRef<HTMLElement>(null);
+  const previousSectionId = useRef(activeSectionId);
   const activeWork = sections
     .flatMap((section) => section.items.map((item) => ({ section, item })))
     .find(({ item }) => item.id === activeWorkId);
 
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0, behavior: "instant" });
+    const sectionChanged = previousSectionId.current !== activeSectionId;
+    previousSectionId.current = activeSectionId;
+    if (sectionChanged && !activeWorkId) {
+      const heading = document
+        .getElementById(activeSectionId)
+        ?.querySelector<HTMLElement>("h1, h2");
+      heading?.setAttribute("tabindex", "-1");
+      heading?.focus({ preventScroll: true });
+    }
     if (activeWork) {
       const index = activeWork.section.items.findIndex(
         (item) => item.id === activeWorkId,
